@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 	public float autoLoadNextLevelAfter;
 
 	void Start(){
-	
+
 		if (autoLoadNextLevelAfter == 0) 
 		{
 

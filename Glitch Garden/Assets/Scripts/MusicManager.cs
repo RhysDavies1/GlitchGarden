@@ -7,6 +7,8 @@ public class MusicManager : MonoBehaviour {
 
 	private AudioSource audioSource;
 
+	private AudioSource loadSound;
+
 	void Awake (){
 
 		DontDestroyOnLoad (gameObject);
@@ -14,9 +16,15 @@ public class MusicManager : MonoBehaviour {
 	}
 
 	void Start(){
+		
+		loadSound = GameObject.Find ("LoadSound").GetComponent<AudioSource> ();
+		
+		loadSound.volume = PlayerPrefsManager.GetMasterVolume ();
 	
 		audioSource = GetComponent<AudioSource> ();
-	
+
+		audioSource.volume = PlayerPrefsManager.GetMasterVolume ();
+			
 	}
 
 	void OnLevelWasLoaded (int level) {
@@ -31,6 +39,12 @@ public class MusicManager : MonoBehaviour {
 			audioSource.Play ();
 
 		}
+
+	}
+
+	public void ChangeVolume(float volumeSlider){
+
+		audioSource.volume = volumeSlider;
 
 	}
 
