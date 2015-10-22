@@ -7,19 +7,19 @@ public class Attacker : MonoBehaviour {
 
 
 	private float currentSpeed;
-
 	private GameObject currentTarget;
 
 	private Animator animator;
 
-	// Use this for initialization
+	private Health healthTarget;
+
+
 	void Start () {
 
 		animator = GetComponent<Animator> ();
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
 		//movement
@@ -31,7 +31,7 @@ public class Attacker : MonoBehaviour {
 			animator.SetBool ("isAttacking", false);
 		
 		}
-	
+
 	}
 
 
@@ -49,12 +49,13 @@ public class Attacker : MonoBehaviour {
 		
 	public void StrikeCurrentTarget(float damage){
 
+		healthTarget = currentTarget.GetComponent<Health> ();
+
 		if (currentTarget) {
 
-			Health health = currentTarget.GetComponent<Health> ();
 
-				if (health){
-					health.TakeDamage(damage);
+				if (healthTarget){
+					healthTarget.TakeDamage(damage);
 				}
 
 		}
